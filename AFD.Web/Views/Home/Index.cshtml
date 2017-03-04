@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="jumbotron">
+    <h1>My Web Application</h1>
+    <p class="lead">
+        Welcome to my Web Application. This web application has been developed for testing purposes.
+        The project is organized in four layers: AFD.Data, AFD.Services, AFD.Web and AFD.WebSevices.
+    </p>
+</div>
+<div>
+    <h2 class="lead">WEB APPLICATION ARCHITECTURE</h2>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <h3>AFD.Web</h3>
+        <p>MVC web Layer. Only contains client side objets and controllers.</p>
+    </div>
+    <div class="col-md-5">
+        <h3>AFD.Model</h3>
+        <p>It's a library classes project that contais all needed entities for my code examples.</p>
+    </div>
+    <div class="col-md-3">
+        <h3>AFD.Services</h3>
+        <p>It's a library classes project where are implemented the bussines logic for web application.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <h3>Test.AFD.Services</h3>
+        <p>Unit testing project for AFD.Services services.</p>
+    </div>
+    <div class="col-md-5">
+        <h3>AFD.Data.EntityFramework</h3>
+        <p>
+            Data access layer. Implemented with Code First and Entity Framework.
+        </p>
+    </div>
+</div>

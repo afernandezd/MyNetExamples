@@ -1,0 +1,246 @@
+﻿@model IEnumerable<AFD.Web.Models.UserViewModels>
+@{
+    ViewBag.Title = "CRUD User";
+}
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Create, Read, Update and Delete actions for users</p>
+<div id="successMessage" class="alert alert-success alert-dismissable fade in" style="display: none">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Success:</strong> User created.
+</div>
+<div id="errorMessage" class="alert alert-danger alert-dismissable fade in" style="display: none">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error:</strong> User could not be created.
+</div>
+
+<div id="CreateUser" class="form-horizontal">
+    <h4>Users</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @*<label class="control-label col-md-2">Name</label>*@
+        <div class="col-md-2">
+            <input class="form-control" type="text" name="Name" id="Name" placeholder="Name" />
+        </div>
+
+        @*<label class="control-label col-md-2">Address</label>*@
+        <div class="col-md-2">
+            <input class="form-control" type="text" name="Address" id="Address" placeholder="Address" />
+        </div>
+
+        @*<label class="control-label col-md-2">Phone Number</label>*@
+        <div class="col-md-2">
+            <input class="form-control" type="text" name="PhoneNumber" id="PhoneNumber" placeholder="Phone number" />
+        </div>
+
+        <div class="col-md-2">
+            <input type="button" id="btnCreate" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+<table id="tableUser" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="TableData">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+        <td>
+            <div class="col-md-6">
+                <input type="button" id="btnEditUser" value="Edit" onclick="EditUser(@item.Id)" class="btn btn-default" />
+                <input type="button" id="btnDetailUser" value="Details" onclick="Details(@item.Id)" class="btn btn-default" />
+                <input type="button" id="btnDeleteUser" value="Delete" onclick="Delete(@item.Id)" class="btn btn-default" />
+            </div>
+        </td> 
+        </tr>
+    }
+
+</table>
+
+<div class="form-horizontal" id="EditUser">
+    <h4>Edit user</h4>
+    <hr/>
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+    <div class="form-group">
+        <input type="hidden" id="IdEdit" name="IdEdit"/>
+        <label class="control-label col-md-2">Name</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="NameEdit" id="NameEdit"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Address</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="AddressEdit" id="AddressEdit"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Phone Number</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="PhoneNumberEdit" id="PhoneNumberEdit"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Save" id="btnSaveEdit" class="btn btn-default"/>
+        </div>
+    </div>
+</div>
+
+<div id="userDetails" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">User details</h4>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        <input type="hidden" id="IdDetails" name="IdDetails" />
+                        <label id="">Name</label>
+                    </dt>
+
+                    <dd>
+                        <label id="NameDetails"></label>
+                    </dd>
+
+                    <dt>
+                        <label id="">Address</label>
+                    </dt>
+
+                    <dd>
+                        <label id="AddressDetails"></label>
+                    </dd>
+
+                    <dt>
+                        <label id="">Phone Number</label>
+                    </dt>
+
+                    <dd>
+                        <label id="PhoneNumberDetails"></label>
+                    </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+        $("#EditUser").hide();
+        $("#userDetails").hide();
+    });
+
+    $("#btnCreate")
+        .click(function() {
+            var objUser = {};
+            objUser.Name = $("#Name").val();
+            objUser.Address = $("#Address").val();
+            objUser.PhoneNumber = $("#PhoneNumber").val();
+            $.post("/User/CreateUser",
+                { objUser: objUser },
+                function(data)
+                {
+                    if (data != null) {
+                        location.reload();
+                    } else {
+                        $('#errorMessage').show();
+                    }
+                });
+        });
+
+    $("#btnSaveEdit")
+        .click(function () {
+            var objUser = {};
+            objUser.Id = $("#IdEdit").val();
+            objUser.Name = $("#NameEdit").val();
+            objUser.Address = $("#AddressEdit").val();
+            objUser.PhoneNumber = $("#PhoneNumberEdit").val();
+            $.post("/User/EditUser",
+                { objUser: objUser },
+                function (data) {
+                    if (data != null) {
+                        location.reload();
+                        alert("User Edited");
+                    } else {
+                        alert("Error");
+                    }
+                });
+        });
+
+    $("#btnEditDetail")
+        .click(function () {
+            var id = document.getElementById("IdDetails").textContent;
+            EditUser(id);
+        });
+
+    function EditUser(id) {
+        $.get("/User/EditUser", { Id: id }, function (data) {
+            if (data != null) {
+                $("#tableUser").hide();
+                $("#CreateUser").hide();
+                $("#EditUser").show();
+                $("#NameEdit").val(data.Name);
+                $("#AddressEdit").val(data.Address);
+                $("#PhoneNumberEdit").val(data.PhoneNumber);
+                $("#IdEdit").val(data.Id);
+            }
+        });
+    }
+
+    function Details(id) {
+        $.get("/User/GetDetails", { Id: id }, function (data) {
+            if (data != null) {
+                $("#userDetails").modal('show');
+                $("#NameDetails").text(data.Name);
+                $("#AddressDetails").text(data.Address);
+                $("#PhoneNumberDetails").text(data.PhoneNumber);
+                $("#IdDetails").text(data.Id);
+            }
+        });
+    }
+
+    function Delete(id) {
+        $.post("/User/DeleteUser", { Id: id }, function (data) {
+            if (data != null) {
+                location.reload();
+                alert("User Deleted");
+            }
+            else {
+                alert("Error");
+            }
+        });
+    }
+</script>

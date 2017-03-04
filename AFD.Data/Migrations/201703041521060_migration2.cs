@@ -1,0 +1,15 @@
+namespace AFD.Data.EntityFramework.Migrations
+{
+    using System.Data.Entity.Migrations;
+    
+    public partial class migration2 : DbMigration
+    {
+        public override void Up()
+        {
+        }
+        
+        public override void Down()
+        {
+        }
+    }
+}
