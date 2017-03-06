@@ -9,11 +9,6 @@ namespace AFD.Services.Implementation
     {
         private readonly UsersDao _userDao = new UsersDao();
 
-        public UserService(UsersDao userDao)
-        {
-            _userDao = userDao;
-        }
-
         public UserService()
         {
         }

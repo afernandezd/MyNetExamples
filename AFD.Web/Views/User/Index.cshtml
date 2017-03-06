@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<AFD.Web.Models.UserViewModels>
 @{
-    ViewBag.Title = "CRUD User";
+    ViewBag.Title = "CRUD User example";
 }
 
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Create, Read, Update and Delete actions for users</p>
+<p>Create, Read, Update and Delete actions for users in a single page.</p>
 <div id="successMessage" class="alert alert-success alert-dismissable fade in" style="display: none">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Success:</strong> User created.
@@ -21,17 +21,14 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @*<label class="control-label col-md-2">Name</label>*@
         <div class="col-md-2">
             <input class="form-control" type="text" name="Name" id="Name" placeholder="Name" />
         </div>
 
-        @*<label class="control-label col-md-2">Address</label>*@
         <div class="col-md-2">
             <input class="form-control" type="text" name="Address" id="Address" placeholder="Address" />
         </div>
 
-        @*<label class="control-label col-md-2">Phone Number</label>*@
         <div class="col-md-2">
             <input class="form-control" type="text" name="PhoneNumber" id="PhoneNumber" placeholder="Phone number" />
         </div>
@@ -193,7 +190,6 @@
                 function (data) {
                     if (data != null) {
                         location.reload();
-                        alert("User Edited");
                     } else {
                         alert("Error");
                     }
@@ -236,7 +232,6 @@
         $.post("/User/DeleteUser", { Id: id }, function (data) {
             if (data != null) {
                 location.reload();
-                alert("User Deleted");
             }
             else {
                 alert("Error");

@@ -11,7 +11,7 @@ namespace AFD.Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "This web site is develped only for testing purposes.";
+            ViewBag.Message = "This web site is developed only for testing purposes.";
 
             return View();
         }

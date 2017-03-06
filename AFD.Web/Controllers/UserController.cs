@@ -40,7 +40,7 @@ namespace AFD.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateUser(UserViewModels objUser)         //objUser is object which should be same as in javascript function
+        public JsonResult CreateUser(UserViewModels objUser)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace AFD.Web.Controllers
                 }
 
                 _userService.CreateUser(new User(objUser.Name, objUser.Address, objUser.PhoneNumber));
-                return Json(objUser, JsonRequestBehavior.AllowGet);        //returning user to javacript
+                return Json(objUser, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
@@ -60,7 +60,7 @@ namespace AFD.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult EditUser(int id)    //For getting details of the selected User
+        public JsonResult EditUser(int id)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace AFD.Web.Controllers
             }
         }
         [HttpPost]
-        public JsonResult EditUser(User objUser)      //For Updating changes 
+        public JsonResult EditUser(User objUser)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace AFD.Web.Controllers
             }
         }
 
-        public JsonResult GetDetails(int id)                       //fetching details of the selected user and passing to the javascript function
+        public JsonResult GetDetails(int id)
         {
             try
             {
