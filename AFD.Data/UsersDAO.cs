@@ -17,7 +17,7 @@ namespace AFD.Data.EntityFramework
                     return context.ObjUser.ToList();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Log error
                 return null;
@@ -35,7 +35,7 @@ namespace AFD.Data.EntityFramework
                     context.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Log error
                 newUser = null;                
@@ -54,7 +54,7 @@ namespace AFD.Data.EntityFramework
                     context.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Log error
             }
@@ -69,7 +69,7 @@ namespace AFD.Data.EntityFramework
                     return context.ObjUser.Find(id);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Log error
                 return null;
@@ -90,7 +90,7 @@ namespace AFD.Data.EntityFramework
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Log error
             }

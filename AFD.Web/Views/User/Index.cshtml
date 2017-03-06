@@ -39,43 +39,45 @@
     </div>
 </div>
 
-<table id="tableUser" class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr id="TableData">
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-        <td>
-            <div class="col-md-6">
-                <input type="button" id="btnEditUser" value="Edit" onclick="EditUser(@item.Id)" class="btn btn-default" />
-                <input type="button" id="btnDetailUser" value="Details" onclick="Details(@item.Id)" class="btn btn-default" />
-                <input type="button" id="btnDeleteUser" value="Delete" onclick="Delete(@item.Id)" class="btn btn-default" />
-            </div>
-        </td> 
+@if (Model != null)
+{
+    <table id="tableUser" class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr id="TableData">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        <div class="col-md-6">
+                            <input type="button" id="btnEditUser" value="Edit" onclick="EditUser(@item.Id)" class="btn btn-default" />
+                            <input type="button" id="btnDetailUser" value="Details" onclick="Details(@item.Id)" class="btn btn-default" />
+                            <input type="button" id="btnDeleteUser" value="Delete" onclick="Delete(@item.Id)" class="btn btn-default" />
+                        </div>
+                    </td>
+                </tr>
+            }
+    </table>
+}
 
 <div class="form-horizontal" id="EditUser">
     <h4>Edit user</h4>

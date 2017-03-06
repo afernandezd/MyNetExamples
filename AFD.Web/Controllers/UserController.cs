@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AFD.Data.EntityFramework;
@@ -24,18 +25,21 @@ namespace AFD.Web.Controllers
         // GET: User
         public ActionResult Index()
         {
-            var viewModel = _userService.ReadUsers()
+            List<User> users = _userService.ReadUsers();
+
+            if (users == null) return View();
+
+            var viewModel = users
                 .ToList()
                 .Select(
                     x =>
-                        new UserViewModels()
+                        new UserViewModels
                         {
                             Address = x.Address,
                             Id = x.Id,
                             Name = x.Name,
                             PhoneNumber = x.PhoneNumber
                         });
-
             return View(viewModel);
         }
 
