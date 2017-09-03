@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AFD.Services", "AFD.Services\AFD.Services.csproj", "{EAB74447-FD06-4F81-8EF9-DD0D942F7CCB}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AFD.Model", "AFD.Model\AFD.Model.csproj", "{95432614-E505-470B-B473-F2E7A2E51951}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.AFD.Services", "Test.AFD.Services\Test.AFD.Services.csproj", "{1B2CA831-81A2-4455-B1D7-412294B4419F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AFD.Hangfire", "AFD.Hangfire\AFD.Hangfire.csproj", "{76ADE885-2E62-43E8-96AE-F1711BE2ECDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{1B2CA831-81A2-4455-B1D7-412294B4419F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B2CA831-81A2-4455-B1D7-412294B4419F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B2CA831-81A2-4455-B1D7-412294B4419F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76ADE885-2E62-43E8-96AE-F1711BE2ECDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76ADE885-2E62-43E8-96AE-F1711BE2ECDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76ADE885-2E62-43E8-96AE-F1711BE2ECDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76ADE885-2E62-43E8-96AE-F1711BE2ECDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
